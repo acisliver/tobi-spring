@@ -1,5 +1,6 @@
 import org.junit.Test;
 import spring.user.User;
+import spring.user.dao.NUserDao;
 import spring.user.dao.UserDao;
 
 import java.sql.SQLException;
@@ -22,7 +23,7 @@ public class UserDaoTest {
 
         // when
         // DB에 user 저장
-        UserDao userDao = new UserDao();
+        UserDao userDao = new NUserDao();
         userDao.add(user);
 
         // DB에서 user id로 user get

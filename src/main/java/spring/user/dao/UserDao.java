@@ -3,7 +3,7 @@ package spring.user.dao;
 import spring.user.User;
 import java.sql.*;
 
-public class UserDao {
+public abstract class UserDao {
 
     // User 정보 DB에 추가
     public void add(User user) throws ClassNotFoundException, SQLException {
@@ -54,10 +54,11 @@ public class UserDao {
         return user;
     }
 
-    private Connection getConnection() throws ClassNotFoundException, SQLException {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        return DriverManager.getConnection(
-                "jdbc:mysql://localhost/tobi-spring?serverTimezone=UTC", "root", "1234"
-        );
-    }
+    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
+//    {
+//        Class.forName("com.mysql.cj.jdbc.Driver");
+//        return DriverManager.getConnection(
+//                "jdbc:mysql://localhost/tobi-spring?serverTimezone=UTC", "root", "1234"
+//        );
+//    }
 }
