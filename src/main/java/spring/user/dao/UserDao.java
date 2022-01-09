@@ -8,10 +8,7 @@ public class UserDao {
     // User 정보 DB에 추가
     public void add(User user) throws ClassNotFoundException, SQLException {
         // DB 연결을 위한 Connection을 가져온다.
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection c = DriverManager.getConnection(
-                "jdbc:mysql://localhost/tobi-spring?serverTimezone=UTC", "root", "1234"
-        );
+        Connection c = getConnection();
 
         // SQL 생성
         PreparedStatement ps = c.prepareStatement(
@@ -32,10 +29,7 @@ public class UserDao {
     // userinfo 테이블에서 id로 User 정보 찾기
     public User get(Long id) throws ClassNotFoundException, SQLException {
         // DB 연결을 위한 Connection을 가져온다.
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection c = DriverManager.getConnection(
-                "jdbc:mysql://localhost/tobi-spring?serverTimezone=UTC", "root", "1234"
-        );
+        Connection c = getConnection();
 
         // SQL 생성
         PreparedStatement ps = c.prepareStatement(
@@ -58,5 +52,12 @@ public class UserDao {
         c.close();
 
         return user;
+    }
+
+    private Connection getConnection() throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        return DriverManager.getConnection(
+                "jdbc:mysql://localhost/tobi-spring?serverTimezone=UTC", "root", "1234"
+        );
     }
 }
